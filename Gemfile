@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
-gem "test-kitchen"
-gem "kitchen-ec2"
-gem "knife-ec2"
+gem 'berkshelf'
+gem 'test-kitchen'
+gem 'kitchen-ec2'
+gem 'serverspec'
+gem 'knife-ec2'

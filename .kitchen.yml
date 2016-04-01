@@ -1,0 +1,24 @@
+---
+driver:
+  name: ec2
+  region: us-west-2
+  availability_zone: a
+  instance_type: t2.micro
+
+transport:
+  ssh_key: ~/.ssh/chef.pem
+  username: ubuntu
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-14.04
+    image_id: ami-9abea4fb
+
+suites:
+  - name: default
+    run_list:
+      - recipe[hubrick]
+      - recipe[nginx::default]
+    attributes:

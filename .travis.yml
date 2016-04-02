@@ -11,7 +11,7 @@ before_script:
   - mkdir -p ~/.aws
   - echo -e "[default]\naws_access_key_id = $AWS_ACCESS_KEY\naws_secret_access_key = $AWS_SECRET_KEY" > ~/.aws/credentials
   - openssl aes-256-cbc -pass "pass:$TRAVIS_CI_SECRET" -in ./.secret -out "$AWS_SSH_KEY"
-  - echo "$AWS_SSH_KEY" && cat "$AWS_SSH_KEY"
+  - chmod 600 "$AWS_SSH_KEY"
 
 script:
   - kitchen verify

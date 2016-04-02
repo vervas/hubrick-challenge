@@ -1,6 +1,6 @@
 # hubrick-cookbook
 
-TODO: Enter the cookbook description here.
+This cookbook provisions and configures an Ubuntu instance running nginx that serves a plain html hello world file on port 80.
 
 ## Supported Platforms
 

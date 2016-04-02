@@ -12,6 +12,7 @@ before_script:
   - echo -e "[default]\naws_access_key_id = $AWS_ACCESS_KEY\naws_secret_access_key = $AWS_SECRET_KEY" > ~/.aws/credentials
   - echo "$SECRET_PASS" | gpg --passphrase-fd 0 -o "$AWS_SSH_KEY" chef.pem.gpg
   - chmod 600 "$AWS_SSH_KEY"
+  - berks install
 
 script:
   - kitchen verify

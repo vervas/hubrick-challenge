@@ -19,6 +19,6 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[hubrick]
+      - recipe[hubrick::default]
       - recipe[nginx::default]
     attributes:

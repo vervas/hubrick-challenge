@@ -5,3 +5,5 @@ license          'All rights reserved'
 description      'Installs/Configures hubrick'
 long_description 'Installs/Configures hubrick'
 version          '0.1.0'
+
+depends 'nginx'

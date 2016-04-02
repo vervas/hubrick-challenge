@@ -2,40 +2,19 @@
 
 This cookbook provisions and configures an Ubuntu instance running nginx that serves a plain html hello world file on port 80.
 
-## Supported Platforms
-
-TODO: List your supported platforms.
-
-## Attributes
-
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['hubrick']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+## Prerequisites
+- have the ChefDK installed and the binary files in your $PATH.
+- have the aws-cli installed and a `$HOME/.aws/credentials` file with your aws access key and secret.
+- env variable $AWS_SSH_KEY_ID set to the name of your aws ssh key.
+- env variable $AWS_SSH_KEY set to the path of that SSH key file.
+- have the default security group in your AWS account allow inbound: SSH, HTTP, HTTPS, and outboud: HTTP, HTTPS.
 
 ## Usage
-
-### hubrick::default
-
-Include `hubrick` in your node's `run_list`:
-
-```json
-{
-  "run_list": [
-    "recipe[hubrick::default]"
-  ]
-}
-```
+- clone this repo
+- run `bundle install`
+- run `source set_env.sh` to prepare you environment
+- run `kitchen converge` to provision the instance
+- run `kitchen verify` to run the tests
 
 ## License and Authors
 

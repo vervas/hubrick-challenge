@@ -6,7 +6,7 @@ driver:
   instance_type: t2.micro
 
 transport:
-  ssh_key: <%= ENV['AWS_SSH_KEY'] %>
+  ssh_key: "<%= ENV['AWS_SSH_KEY'] %>"
   username: ubuntu
 
 provisioner:

@@ -1,11 +1,24 @@
+sudo: required
+dist: trusty
+
 language: ruby
 rvm: 2.2.1
+
 before_install:
-- curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk
+  - curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk
+
 before_script:
-- openssl aes-256-cbc -pass "pass:$TRAVIS_CI_SECRET" -in ./.secret -out "$AWS_SSH_KEY"
+  - mkdir -p ~/.aws
+  - cat <<EOF > ~/.aws/credentials
+[default]
+aws_access_key_id = $AWS_ACCESS_KEY
+aws_secret_access_key = $AWS_SECRET_KEY
+EOF
+  - openssl aes-256-cbc -pass "pass:$TRAVIS_CI_SECRET" -in ./.secret -out "$AWS_SSH_KEY"
+
 script:
-- kitchen verify
+  - kitchen verify
+
 env:
   global:
   - secure: KHCxa2JxvNTElPOAeOySqmvE5V2624qUkWhopGJpsBsD7HRQ5hzyi07G93xbnLt9/n6Xf1Py6ZJWYoraHnZI0HXjiXcfhHvw9cx9kK5jMva3gHsSyYmsSptve3ERZHGGxkNmOpztayScKu+KSvu3sFH0UUT3XORFtJA0FzCikB+UD6zkIZyhxjcs9DkKiZRQD/KZ2XtakgiXvuCiAaDR4eXrNleECqlytZLqsMCET4eFNUhaWxAvjZ4tq4uEOgdBQRtJOsLHkM4smy6IewFf9bwjDwJuSUKKM/4C6Bt9VCtRxEqfbJMDgyz/B61sYuEbUg8by9kkKW0ILqheMWZr6NiE0PBgfrPl3kx7fYJJyMDELnFt8Km76DTNpovR2FvMQDDyTUJ1zwsyDyWvXwWirPbtXcs1nCJenjXZsFzXqyixsQ2E+wlFGMMXHtDW/THrRF4iPyO7UsbNgFRSnj8geC2HZ6YMA+H18Rqs/JlbEIzou2KqCLaLLUv7IDqNFi3wXVeO0G/rliyyzMrnNxWmek8L59RimWA7s7mGcLOIH31A3nC2wvtn2qNZOAk0McfAyE2dMB7rw/BPtO6TBrr/ntMfEjjApKWyk7ZD2uOtKh9W2w2uC2JK+0TF+uwfaitqRQYEIAFFzq6DL/1DLx8CnzsF5hOVM5jYkg2EpJzN8nc=

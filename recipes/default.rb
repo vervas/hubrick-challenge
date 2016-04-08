@@ -15,6 +15,21 @@ user 'hubrick' do
   shell '/bin/bash'
 end
 
+docker_service 'default' do
+  action [:create, :start]
+end
+
+docker_image 'elasticsearch' do
+  action :pull
+end
+
+docker_container 'elasticsearch' do
+  repo 'elasticsearch'
+  tag 'latest'
+  port '9200:9200'
+  env 'FOO=bar'
+end
+
 include_recipe 'nginx::default'
 
 directory '/var/www' do

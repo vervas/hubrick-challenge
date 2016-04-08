@@ -13,4 +13,8 @@ describe "Nginx service" do
     expect(service("nginx")).to be_running
   end
 
+  describe command('curl localhost') do
+    its(:stdout) { should match /"tagline" : "You Know, for Search"/ }
+  end
+
 end

@@ -1,8 +1,12 @@
+upstream elasticsearch {
+    server 0.0.0.0:9200;
+}
+
+
 server {
     listen 80;
-    root /var/www;
 
     location / {
-        index index.html;
+        proxy_pass http://elasticsearch;
     }
 }
